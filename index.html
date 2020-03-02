@@ -11,7 +11,7 @@
 
 <div id="app">
     <input type="text" :input="changeTitle">
-    <p>{{ title }}</p>
+    <h1>{{ title }}</h1>
 
     <h2>Todos:</h2>
   <ol>
@@ -28,6 +28,7 @@
         <span v-else>
           {{ todo.text }}
         </span>
+
       </label>
       
     </li>
@@ -36,6 +37,7 @@
  <p> {{ sayHello() }} </p>
 
  <a v-bind:href="link"> Google </a>
+ <p v-html="htmlLink"></p>
 </div>
 
 </body>
@@ -49,6 +51,7 @@ new Vue({
   data: {
   	title: 'Hello World!',
     link: "http://google.com",
+    htmlLink: "<a href='http://google.com'>Google</a>",
 
       todos: [
       { text: "Learn JavaScript", done: false },
