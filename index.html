@@ -34,6 +34,8 @@
       
     </li>
   </ol>
+
+  {{ sayHello() }}
 </div>
 
 </body>
@@ -61,6 +63,10 @@ new Vue({
 
     toggle: function(todo) {
         todo.done =!todo.done
+    },
+
+    sayHello: function() {
+        return "Say hello rendered"
     }
   }
 });
