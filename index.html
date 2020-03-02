@@ -13,8 +13,6 @@
     <input type="text" :input="changeTitle">
     <p>{{ title }}</p>
 
-
-
     <h2>Todos:</h2>
   <ol>
     <li v-for="todo in todos">
@@ -35,7 +33,9 @@
     </li>
   </ol>
 
-  {{ sayHello() }}
+ <p> {{ sayHello() }} </p>
+
+ <a v-bind:href="link"> Google </a>
 </div>
 
 </body>
@@ -48,6 +48,7 @@ new Vue({
 	el: '#app',
   data: {
   	title: 'Hello World!',
+    link: "http://google.com",
 
       todos: [
       { text: "Learn JavaScript", done: false },
