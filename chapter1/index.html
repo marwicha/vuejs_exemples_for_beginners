@@ -10,8 +10,9 @@
 <body>
 
 <div id="app">
-    <input type="text" :input="changeTitle">
-    <h1>{{ title }}</h1>
+    <input type="text" v-on:input="changeTitle">
+
+    <h3>{{ title }}</h3>
 
     <h2>Todos:</h2>
   <ol>
@@ -34,10 +35,32 @@
     </li>
   </ol>
 
+  <h3>Render from a method</h3>
  <p> {{ sayHello() }} </p>
 
+ <h3>Links</h3>
  <a v-bind:href="link"> Google </a>
  <p v-html="htmlLink"></p>
+
+
+ <h3>Events</h3>
+
+ <button v-on:click="inrement(2, $event)"> Increase </button>
+
+ <p> counter : {{counter}} </p>
+
+ <p v-on:mousemove="updateCoordinates">
+   
+  coordinates {{x}} / {{y}} 
+  <br>
+
+  <span v-on:mousemove="dummy"> STOP EVENT HERE using event stopPropagation </span>
+  <br>
+  
+  <span v-on:mousemove.stop> STOP EVENT HERE using modifier stop </span>
+
+</p>
+
 </div>
 
 </body>
@@ -52,13 +75,17 @@ new Vue({
   	title: 'Hello World!',
     link: "http://google.com",
     htmlLink: "<a href='http://google.com'>Google</a>",
+    counter: 0,
 
       todos: [
       { text: "Learn JavaScript", done: false },
       { text: "Learn Vue", done: false },
       { text: "Play around in JSFiddle", done: true },
       { text: "Build something awesome", done: true }
-    ]
+    ],
+
+    x: 0,
+    y: 0
   },
   methods: {
   	changeTitle: function(event) {
@@ -71,6 +98,21 @@ new Vue({
 
     sayHello: function() {
         return "Say hello rendered"
+    },
+
+    inrement: function(step, event) {
+       this.counter += step
+    },
+
+    updateCoordinates: function(event) {
+      this.x = event.clientX;
+      this.y = event.clientY
+    },
+
+    dummy: function(event) {
+
+      event.stopPropagation();
+      
     }
   }
 });
