@@ -59,8 +59,12 @@
   
   <span v-on:mousemove.stop> STOP EVENT HERE using modifier stop </span>
 
+  
+
 </p>
 
+
+<input type="text" v-on:keyup.enter="alertt"/> 
 </div>
 
 </body>
@@ -113,6 +117,11 @@ new Vue({
 
       event.stopPropagation();
       
+    },
+
+    alertt: function() {
+
+       alert("Hi there !!")
     }
   }
 });
