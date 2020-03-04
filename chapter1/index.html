@@ -47,7 +47,9 @@
 
  <button v-on:click="inrement(2, $event)"> Increase </button>
 
- <p> counter : {{counter}} </p>
+ <button v-on:click="counter++"> Increase </button>
+
+ <p> counter : {{counter}} {{counter * 2 > 10 ? "Greater than 10" : "Smaller than 10"}} </p>
 
  <p v-on:mousemove="updateCoordinates">
    
