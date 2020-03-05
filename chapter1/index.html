@@ -10,7 +10,7 @@
 <body>
 
 <div id="app">
-    <input type="text" v-on:input="changeTitle">
+    <input type="text" @input="changeTitle">
 
     <h3>{{ title }}</h3>
 
@@ -19,7 +19,7 @@
     <li v-for="todo in todos">
       <label>
         <input type="checkbox"
-          v-on:change="toggle(todo)"
+          @change="toggle(todo)"
           v-bind:checked="todo.done">
 
         <del v-if="todo.done">
@@ -76,7 +76,8 @@
 
 new Vue({
 	el: '#app',
-  data: {
+  data() {
+    return {
   	title: 'Hello World!',
     link: "http://google.com",
     htmlLink: "<a href='http://google.com'>Google</a>",
