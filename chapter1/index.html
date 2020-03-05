@@ -39,34 +39,55 @@
  <p> {{ sayHello() }} </p>
 
  <h3>Links</h3>
- <a v-bind:href="link"> Google </a>
+ <a :href="link"> Google </a>
  <p v-html="htmlLink"></p>
 
 
  <h3>Events</h3>
 
- <button v-on:click="inrement(2, $event)"> Increase </button>
+ <button @click="inrement(2, $event)"> Increase </button>
 
- <button v-on:click="counter++"> Increase </button>
+ <button @click="counter++"> Increase </button>
 
  <p> counter : {{counter}} {{counter * 2 > 10 ? "Greater than 10" : "Smaller than 10"}} </p>
 
 
- <p v-on:mousemove="updateCoordinates">
+ <p @mousemove="updateCoordinates">
    
   coordinates {{x}} / {{y}} 
   <br>
 
-  <span v-on:mousemove="dummy"> STOP EVENT HERE using event stopPropagation </span>
+  <span @mousemove="dummy"> STOP EVENT HERE using event stopPropagation </span>
   <br>
   
-  <span v-on:mousemove.stop> STOP EVENT HERE using modifier stop </span>
+  <span @mousemove.stop> STOP EVENT HERE using modifier stop </span>
 
 </p>
 
-<input type="text" v-on:keyup.enter="alertt"/> 
+<input type="text" @keyup.enter="alertt"/> 
+
+<br>
+  <div 
+  class="demo"
+  @click="attachedRed = !attachedRed"
+  v-bind:class="{ red: attachedRed }"
+  > </div>
+  <div class="demo"
+       @click="attachedRed = !attachedRed"
+       v-bind:class="{ blue: attachedRed }"
+  
+  ></div>
+  <div class="demo"
+  @click="attachedRed = !attachedRed"
+  v-bind:class="{ green: attachedRed }"
+  
+  ></div>
 
 </div>
+
+
+
+
 
 </body>
 </html>
@@ -91,7 +112,10 @@ new Vue({
     ],
 
     x: 0,
-    y: 0
+    y: 0,
+
+    attachedRed: false,
+    }
   },
   methods: {
   	changeTitle(event) {
@@ -140,3 +164,28 @@ new Vue({
 });
 
 </script>
+
+<style>
+
+.demo.red {
+  background-color: red;
+}
+
+.demo.green {
+  background-color: green;
+};
+
+.demo.blue {
+  background-color: blue;
+}
+
+.demo {
+  width: 100px;
+  height: 100px;
+  background-color: gray;
+  display: inline-block;
+  margin: 10px;
+};
+
+
+</style>
