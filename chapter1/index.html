@@ -51,6 +51,7 @@
 
  <p> counter : {{counter}} {{counter * 2 > 10 ? "Greater than 10" : "Smaller than 10"}} </p>
 
+
  <p v-on:mousemove="updateCoordinates">
    
   coordinates {{x}} / {{y}} 
@@ -61,12 +62,10 @@
   
   <span v-on:mousemove.stop> STOP EVENT HERE using modifier stop </span>
 
-  
-
 </p>
 
-
 <input type="text" v-on:keyup.enter="alertt"/> 
+
 </div>
 
 </body>
@@ -94,36 +93,47 @@ new Vue({
     y: 0
   },
   methods: {
-  	changeTitle: function(event) {
+  	changeTitle(event) {
     	this.title = event.target.value;
     },
 
-    toggle: function(todo) {
+    toggle(todo) {
         todo.done =!todo.done
     },
 
-    sayHello: function() {
+    sayHello() {
         return "Say hello rendered"
     },
 
-    inrement: function(step, event) {
+    inrement(step, event) {
+      console.log("method")
        this.counter += step
     },
 
-    updateCoordinates: function(event) {
+    updateCoordinates(event) {
       this.x = event.clientX;
       this.y = event.clientY
     },
 
-    dummy: function(event) {
+    dummy(event) {
 
       event.stopPropagation();
       
     },
 
-    alertt: function() {
+    alertt() {
+      alert("Hi there !!")
+    }
+  },
 
-       alert("Hi there !!")
+// excute code when data changes
+  watch: {
+    counter(value) {
+      var vm = this
+      setTimeout(() => {
+        vm.counter = 0;
+      } ,2000)
+
     }
   }
 });
