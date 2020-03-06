@@ -10,98 +10,14 @@
 <body>
 
 <div id="app">
-    <input type="text" @input="changeTitle">
+ 
+    <p v-if="show"> You can see me ! </p>
 
-    <h3>{{ title }}</h3>
+    <button @click="show = !show">
+        
+       {{buttonText}}
 
-    <h2>Todos:</h2>
-  <ol>
-    <li v-for="todo in todos">
-      <label>
-        <input type="checkbox"
-          @change="toggle(todo)"
-          v-bind:checked="todo.done">
-
-        <del v-if="todo.done">
-          {{ todo.text }}
-        </del>
-
-        <span v-else>
-          {{ todo.text }}
-        </span>
-
-      </label>
-      
-    </li>
-  </ol>
-
-  <h3>Render from a method</h3>
- <p> {{ sayHello() }} </p>
-
- <h3>Links</h3>
- <a :href="link"> Google </a>
- <p v-html="htmlLink"></p>
-
-
- <h3>Events</h3>
-
- <button @click="inrement(2, $event)"> Increase </button>
-
- <button @click="counter++"> Increase </button>
-
- <p> counter : {{counter}} {{counter * 2 > 10 ? "Greater than 10" : "Smaller than 10"}} </p>
-
-
- <p @mousemove="updateCoordinates">
-   
-  coordinates {{x}} / {{y}} 
-  <br>
-
-  <span @mousemove="dummy"> STOP EVENT HERE using event stopPropagation </span>
-  <br>
-  
-  <span @mousemove.stop> STOP EVENT HERE using modifier stop </span>
-
-</p>
-
-<input type="text" @keyup.enter="alertt"/> 
-
-<br>
-<h3> Dynamic styling css </h3>
-  <div 
-  class="demo"
-  @click="attachedRed = !attachedRed"
-  :class="divClasses"
-  > </div>
-
-  <div class="demo"
-       :class="{ red: attachedRed }"
-  
-  ></div>
-
-  <div class="demo"
-       :style="{ backgroundColor: color }"
-  
-  ></div>
-
-
-  <div class="demo"
-  :style="myStyle">
-  </div>
-
-  <br>
-
-  <h3> Dynamic styling css using names: two way binding </h3>
-
-  <div class="demo" :class="[color, {red: attachedRed} ]"></div>
-
-  <hr>
-
-  <input type="text" v-model="color"/> 
-
-  <br>
-
-  <input type="text" v-model="width"/> 
+    </button>
 
 </div>
 
@@ -109,114 +25,24 @@
 </body>
 </html>
 
-
 <script>
 
 new Vue({
-	el: '#app',
-  data : {
-  	title: 'Hello World!',
-    link: "http://google.com",
-    htmlLink: "<a href='http://google.com'> Google </a>",
-    counter: 0,
-
-      todos: [
-      { text: "Learn JavaScript", done: false },
-      { text: "Learn Vue", done: false },
-      { text: "Play around in JSFiddle", done: true },
-      { text: "Build something awesome", done: true }
-    ],
-
-    x: 0,
-    y: 0,
-
-    attachedRed: false,
-    color: 'green',
-    width: 100
-  
-  },
-  methods: {
-  	changeTitle(event) {
-    	this.title = event.target.value;
-    },
-
-    toggle(todo) {
-        todo.done =!todo.done
-    },
-
-    sayHello() {
-        return "Say hello rendered"
-    },
-
-    inrement(step, event) {
-       this.counter += step
-    },
-
-    updateCoordinates(event) {
-      this.x = event.clientX;
-      this.y = event.clientY
-    },
-
-    dummy(event) {
-      event.stopPropagation();
-    },
-
-    alertt() {
-      alert("Hi there !!")
-    }
-  },
-
-// excute code when data changes
-  watch: {
-    counter(value) {
-      var vm = this
-      setTimeout(() => {
-        vm.counter = 0;
-      } ,2000)
-
-    }
-  },
-
- computed: {
-  divClasses() {
+el: '#app',
+data () {
     return {
-      red: this.attachedRed,
-      blue: !this.attachedRed
+        show: true
     }
-  },
 
-  myStyle() {
-    return {
-      backgroundColor: this.color,
-      width: this.width + 'px'
-    }
-  }
 },
+
+computed: {
+    buttonText() {
+
+    return this.show ? "Hide text" : "Show text"
+
+    }
+}
 });
 
 </script>
-
-<style>
-
-.demo.red {
-  background-color: red;
-}
-
-.demo.blue {
-  background-color: blue;
-}
-
-.demo.green {
-  background-color: green;
-}
-
-.demo {
-  width: 100px;
-  height: 100px;
-  background-color: gray;
-  display: inline-block;
-  margin: 10px;
-};
-
-
-</style>
