@@ -79,6 +79,16 @@
   
   ></div>
 
+  <div class="demo"
+       :style="{ backgroundColor: color }"
+  
+  ></div>
+
+
+  <div class="demo"
+  :style="myStyle">
+  </div>
+
   <br>
 
   <h3> Dynamic styling css using names: two way binding </h3>
@@ -88,6 +98,10 @@
   <hr>
 
   <input type="text" v-model="color"/> 
+
+  <br>
+
+  <input type="text" v-model="width"/> 
 
 </div>
 
@@ -117,7 +131,8 @@ new Vue({
     y: 0,
 
     attachedRed: false,
-    color: 'green'
+    color: 'green',
+    width: 100
   
   },
   methods: {
@@ -134,7 +149,6 @@ new Vue({
     },
 
     inrement(step, event) {
-      console.log("method")
        this.counter += step
     },
 
@@ -170,6 +184,13 @@ new Vue({
       blue: !this.attachedRed
     }
   },
+
+  myStyle() {
+    return {
+      backgroundColor: this.color,
+      width: this.width + 'px'
+    }
+  }
 },
 });
 
