@@ -67,15 +67,27 @@
 <input type="text" @keyup.enter="alertt"/> 
 
 <br>
+<h3> Dynamic styling css </h3>
   <div 
   class="demo"
   @click="attachedRed = !attachedRed"
   :class="divClasses"
   > </div>
+
   <div class="demo"
        :class="{ red: attachedRed }"
   
   ></div>
+
+  <br>
+
+  <h3> Dynamic styling css using names: two way binding </h3>
+
+  <div class="demo" :class="color"></div>
+
+  <hr>
+
+  <input type="text" v-model="color"/> 
 
 </div>
 
@@ -88,11 +100,10 @@
 
 new Vue({
 	el: '#app',
-  data() {
-    return {
+  data : {
   	title: 'Hello World!',
     link: "http://google.com",
-    htmlLink: "<a href='http://google.com'>Google</a>",
+    htmlLink: "<a href='http://google.com'> Google </a>",
     counter: 0,
 
       todos: [
@@ -106,12 +117,8 @@ new Vue({
     y: 0,
 
     attachedRed: false,
-
-    divClasses: {
-      red: this.attachedRed,
-      blue: !this.attachedRed
-    }
-    }
+    color: 'green'
+  
   },
   methods: {
   	changeTitle(event) {
@@ -137,9 +144,7 @@ new Vue({
     },
 
     dummy(event) {
-
       event.stopPropagation();
-      
     },
 
     alertt() {
@@ -156,7 +161,16 @@ new Vue({
       } ,2000)
 
     }
-  }
+  },
+
+ computed: {
+  divClasses() {
+    return {
+      red: this.attachedRed,
+      blue: !this.attachedRed
+    }
+  },
+},
 });
 
 </script>
@@ -169,6 +183,10 @@ new Vue({
 
 .demo.blue {
   background-color: blue;
+}
+
+.demo.green {
+  background-color: green;
 }
 
 .demo {
