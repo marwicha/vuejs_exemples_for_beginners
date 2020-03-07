@@ -27,15 +27,26 @@
 
     </template>
 
-    <br>
+    <hr>
 
-    <h3> Render List </h3>
+    <h3> Render List (Array) </h3>
 
     <ul>
 
         <li v-for="(ingredient, index) in ingredients">
 
              {{index}} - {{ingredient}} 
+
+        </li>
+    </ul>
+
+    <hr>
+
+    <h3> Render List (Array of objects) </h3>
+    <ul>
+        <li v-for="person in persons">
+
+            <div v-for="(value, key, index) in person"> {{index}} : {{key}} : {{value}} </div>
 
         </li>
     </ul>
