@@ -27,6 +27,19 @@
 
     </template>
 
+    <br>
+
+    <h3> Render List </h3>
+
+    <ul>
+
+        <li v-for="(ingredient, index) in ingredients">
+
+             {{index}} - {{ingredient}} 
+
+        </li>
+    </ul>
+
 </div>
 
 
@@ -39,7 +52,14 @@ new Vue({
 el: '#app',
 data () {
     return {
-        show: true
+        show: true,
+        ingredients: ['meat', 'fruit', 'cookies'],
+        persons: [
+            {name: "marwa", age: 27, color: "green"},
+            {name: "mriwa", age: 28, color: "blue"}
+        ]
+
+
     }
 
 },
