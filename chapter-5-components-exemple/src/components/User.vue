@@ -12,8 +12,11 @@
                 <app-user-detail :name="name"></app-user-detail>
                 
             </div>
+
             <div class="col-xs-12 col-sm-6">
+
                 <app-user-edit></app-user-edit>
+                
             </div>
         </div>
     </div>
@@ -36,7 +39,7 @@
         },
 
         methods: {
-            changeName(){
+            changeName() {
                 return this.name = "Mriwa"
             }
         },
