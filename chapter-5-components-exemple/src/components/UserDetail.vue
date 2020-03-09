@@ -5,6 +5,8 @@
 
         <p> Username is : {{ switchName() }} </p>
 
+        <button @click="resetName"> Reset name </button>
+
     </div>
 </template>
 
@@ -14,11 +16,24 @@ export default {
 
 // child component
 
-props: ['name'],
+props: {
+    // Multiple types are valid
+    myName : { 
+        type: String,
+        required : true       
+    }
+},
 
 methods: {
     switchName() {
-        return this.name.split("").reverse().join("");
+        return this.myName.split("").reverse().join("");
+    },
+
+    resetName() {
+        this.myName = "Marwa"
+
+        // emit event from child to parent 
+        this.$emit('nameWasReset', this.myName)
     }
 },
 
