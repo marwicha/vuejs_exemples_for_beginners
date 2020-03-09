@@ -14,7 +14,9 @@
                 <app-user-detail 
                 
                  :myName="name"
-                 @nameWasReset="name = $event">
+                 @nameWasReset="name = $event"
+                 :resetFn ="resetNameWithCallback"
+                 >
 
                  </app-user-detail>
                 
@@ -48,6 +50,10 @@
         methods: {
             changeName() {
                 return this.name = "Mriwa"
+            },
+
+            resetNameWithCallback() {
+                return this.name = "Marwa"
             }
         },
     }

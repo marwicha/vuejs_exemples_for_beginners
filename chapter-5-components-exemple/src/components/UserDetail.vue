@@ -7,7 +7,11 @@
 
         <button @click="resetName"> Reset name </button>
 
+
+        <button @click="resetFn()"> Reset name with callback </button>
+
     </div>
+
 </template>
 
 <script>
@@ -21,7 +25,9 @@ props: {
     myName : { 
         type: String,
         required : true       
-    }
+    },
+
+    resetFn: Function
 },
 
 methods: {
