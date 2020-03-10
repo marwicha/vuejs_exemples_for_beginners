@@ -24,7 +24,11 @@ export default {
         this.userAge = 30
 
         // To pass data from child component to another child
-        eventBus.$emit('ageWasEdited', this.userAge)
+        //eventBus.$emit('ageWasEdited', this.userAge)
+
+        // Acces eventBus method
+
+        eventBus.changeAge(this.userAge)
 
         }
         
