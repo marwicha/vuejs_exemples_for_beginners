@@ -3,7 +3,9 @@
         <h3>You may view the User Details here</h3>
         <p>Many Details</p>
 
-        <p> Username is : {{ switchName() }} </p>
+        <p> Username : {{ switchName() }} </p>
+
+        <p> User age : {{ userAge }} </p>
 
         <button @click="resetName"> Reset name </button>
 
@@ -16,6 +18,8 @@
 
 <script>
 
+import { eventBus } from '../main';
+
 export default {
 
 // child component
@@ -27,7 +31,9 @@ props: {
         required : true       
     },
 
-    resetFn: Function
+    resetFn: Function,
+
+    userAge: Number
 },
 
 methods: {
@@ -43,6 +49,16 @@ methods: {
     }
 },
 
+// hook
+created() {
+// listner keeps running from the begining of this component on
+
+ eventBus.$on('ageWasEdited', (age) => {
+
+  this.userAge = age;
+});
+
+}
 }
 </script>
 

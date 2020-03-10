@@ -16,6 +16,7 @@
                  :myName="name"
                  @nameWasReset="name = $event"
                  :resetFn ="resetNameWithCallback"
+                 :userAge="age"
                  >
 
                  </app-user-detail>
@@ -24,7 +25,7 @@
 
             <div class="col-xs-12 col-sm-6">
 
-                <app-user-edit></app-user-edit>
+                <app-user-edit :userAge ="age"></app-user-edit>
                 
             </div>
         </div>
@@ -43,7 +44,8 @@
 
         data() {
             return {
-                name: "Marwa"
+                name: "Marwa",
+                age: 27
             }
         },
 
