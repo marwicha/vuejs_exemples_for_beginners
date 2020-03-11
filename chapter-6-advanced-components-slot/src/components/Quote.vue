@@ -5,13 +5,25 @@
 
 <slot name="title">  </slot>
 
+<span style="color: #ccc"> 
+  <slot name="subtitle"> The subtitle </slot>
+</span>
+
 </div>
 
 <hr>
 
 <div> 
 
+
+ <!-- Named SLOT -->
+
 <slot name="content">  </slot>
+
+
+ <!-- DEFAULT SLOT
+ <slot>  </slot>
+  -->
 
 </div>
 
