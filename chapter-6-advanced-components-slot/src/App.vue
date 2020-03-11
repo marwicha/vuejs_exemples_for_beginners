@@ -5,11 +5,12 @@
                
                <app-quote> 
 
-                   <h2> {{quoteTitle}} </h2>
+                   <h2 slot="title"> {{ quoteTitle }} </h2>
 
-                   <p> A wonderful Quote </p>
+                   <p slot="content"> A wonderful Quote </p>
 
                </app-quote>
+               
             </div>
         </div>
     </div>
