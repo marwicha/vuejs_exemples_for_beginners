@@ -3,11 +3,16 @@
         <form>
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                    <h1>File a Complaint</h1>
+                    <h1>Form Vue js</h1>
                     <hr>
                     <div class="form-group">
                         <label for="email">Mail</label>
+                        <!-- v-model behind the scene 
+                              :value="userData.email"
+                              @input="userData.email = $event.target.value"
+                        -->
                         <input
+                                v-model="userData.email"
                                 type="text"
                                 id="email"
                                 class="form-control">
@@ -15,13 +20,17 @@
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input
+                                v-model.lazy="userData.password"
                                 type="password"
                                 id="password"
                                 class="form-control">
+                                <br>
+                                {{userData.password}}
                     </div>
                     <div class="form-group">
                         <label for="age">Age</label>
                         <input
+                                v-model="userData.age"
                                 type="number"
                                 id="age"
                                 class="form-control">
@@ -36,7 +45,10 @@
                     <textarea
                             id="message"
                             rows="5"
-                            class="form-control"></textarea>
+                            class="form-control"
+                            v-model="message"
+                            
+                    ></textarea>
                 </div>
             </div>
             <div class="row">
@@ -46,13 +58,17 @@
                             <input
                                     type="checkbox"
                                     id="sendmail"
-                                    value="SendMail"> Send Mail
+                                    value="SendMail"
+                                    v-model="sendMail"
+                                    > Send Mail
                         </label>
                         <label for="sendInfomail">
                             <input
                                     type="checkbox"
                                     id="sendInfomail"
-                                    value="SendInfoMail"> Send Infomail
+                                    value="SendInfoMail"
+                                    v-model="sendMail"
+                                    > Send Infomail
                         </label>
                     </div>
 
@@ -64,13 +80,17 @@
                         <input
                                 type="radio"
                                 id="male"
-                                value="Male"> Male
+                                value="Male"
+                                v-model="gender"
+                                > Male
                     </label>
                     <label for="female">
                         <input
                                 type="radio"
                                 id="female"
-                                value="Female"> Female
+                                value="Female"
+                                v-model="gender"
+                                > Female
                     </label>
                 </div>
             </div>
@@ -79,8 +99,16 @@
                     <label for="priority">Priority</label>
                     <select
                             id="priority"
-                            class="form-control">
-                        <option></option>
+                            class="form-control"
+                            v-model="selectedPriority"
+                            >
+                        <!-- :selected="priority == 'Medium'" -->
+                        <option v-for="(priority, index) in priorities" 
+                              
+                                :key="index">
+
+                                {{priority}}
+                        </option>
                     </select>
                 </div>
             </div>
@@ -98,19 +126,22 @@
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4>Your Data</h4>
+                        <h4>My Data</h4>
                     </div>
                     <div class="panel-body">
-                        <p>Mail:</p>
-                        <p>Password:</p>
-                        <p>Age:</p>
-                        <p>Message: </p>
+                        <p>Mail: {{ userData.email }}</p>
+                        <p>Password: {{ userData.password }}</p>
+                        <p>Age: {{ userData.age }}</p>
+                        <p style="white-space: pre">Message: {{message}}</p>
                         <p><strong>Send Mail?</strong></p>
                         <ul>
-                            <li></li>
+                            <li v-for="(item, index) in sendMail" :key="index">
+                                {{item}}
+
+                            </li>
                         </ul>
-                        <p>Gender:</p>
-                        <p>Priority:</p>
+                        <p>Gender: {{ gender }} </p>
+                        <p>Priority: {{ selectedPriority }}</p>
                         <p>Switched:</p>
                     </div>
                 </div>
@@ -121,7 +152,22 @@
 
 <script>
     export default {
+       data() {
 
+        return {
+
+            userData: {
+               email: '',
+               password: '',
+               age: 27
+            },
+            message: 'A new text',
+            sendMail: [],
+            gender: 'Male',
+            priorities: ['High', 'Medium', 'Low'],
+            selectedPriority: 'High'
+      }
+},
     }
 </script>
 
