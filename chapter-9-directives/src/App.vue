@@ -6,7 +6,7 @@
 
                 <p v-highlight:background.delayed="'red'"> Color this </p>
 
-                <p v-local-directive-highlight:background.delayed.blink="'red'"> Color this </p>
+                <p v-local-directive-highlight:background.delayed.blink="{mainColor: 'red', secondColor: 'green', delay: 500}"> Color this </p>
                
             </div>
         </div>
@@ -33,8 +33,8 @@
                       }
 
                       if (binding.modifiers['blink']) {
-                          let mainColor = binding.value
-                          let secondColor = 'blue'
+                          let mainColor = binding.value.mainColor
+                          let secondColor = binding.value.secondColor
 
                           let currentColor = mainColor
 
@@ -60,10 +60,10 @@
                            setTimeout(() => {
                              if (binding.arg) {
 
-                             el.style.backgroundColor = binding.value 
+                             el.style.backgroundColor = binding.value.mainColor
     
                              } else {
-                             el.style.color = binding.value 
+                             el.style.color = binding.value.mainColor
                               }
                          }, delayed)
                       }
