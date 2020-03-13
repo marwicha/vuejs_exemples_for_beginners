@@ -6,6 +6,8 @@
 
                 <p v-highlight:background.delayed="'red'"> Color this </p>
 
+                <p v-local-directive-highlight:background.delayed="'red'"> Color this </p>
+               
             </div>
         </div>
     </div>
@@ -18,6 +20,32 @@
                 
             }
         },
+
+        directives: {
+            // name of the directive
+            'local-directive-highlight': {
+                bind(el, binding, vnode) {
+                      let delayed = 0
+
+                      if(binding.modifiers['delayed']) {
+                       delayed = 3000
+
+                         setTimeout(() => {
+                             if (binding.arg) {
+
+                             el.style.backgroundColor = binding.value 
+    
+                             } else {
+                             el.style.color = binding.value 
+                              }
+                         }, delayed)
+
+                        }
+
+                }
+            }
+
+        }
     }
 </script>
 
