@@ -15,7 +15,7 @@ Vue.directive('highlight', {
 
    if(binding.modifiers['delayed']) {
      delayed = 3000
-
+   }
      setTimeout(() => {
       if (binding.arg) {
 
@@ -27,8 +27,6 @@ Vue.directive('highlight', {
      }, delayed)
 
    }
-
-  }
 })
 
 new Vue({
