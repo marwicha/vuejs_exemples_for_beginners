@@ -23,6 +23,10 @@
                     @click="submit"> Submit </button>
 
                     <hr>
+
+                    <input class="form-control" type="text" 
+                    v-model="node">
+
                     <button class="btn btn-primary" 
                     @click="fetchData"> fetch data </button>
 
@@ -51,7 +55,8 @@
                 },
                 users: [],
 
-                resource: {}
+                resource: {},
+                node: 'data'
             }
         },
 
@@ -68,8 +73,21 @@
             },
 
         fetchData() {
-            this.$http.get('')
-                .then(response => {
+            // this.$http.get('')
+            //     .then(response => {
+            //         return response.json()
+                   
+            //     })
+            //     .then(data => { 
+            //         const resultArray = []
+            //         for (let key in data) {
+            //             resultArray.push(data[key])
+            //         }
+            //         this.users = resultArray
+                   
+            //     })
+                 this.resource.getData({node: this.node})
+                 .then(response => {
                     return response.json()
                    
                 })
@@ -87,14 +105,15 @@
        // life cycle hook in vue js
         created() {
             // creating multiple ressources and save in central place
-            const customAction =  {
-                saveAll : { method: 'POST', url: 'alternative.json' }
+            const customActions =  {
+                saveAll: { method: 'POST', url: 'alternative.json' },
+                getData: { method: 'GET' }
 
             }
-            this.resource = this.$resource('data.json', {}, customAction)
+            this.resource = this.$resource('{node}.json', {}, customActions)
         },
     }
-    
+
 </script>
 
 <style>
