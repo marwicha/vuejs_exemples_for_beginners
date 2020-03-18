@@ -6,7 +6,7 @@ import App from './App.vue'
 Vue.use(VueResource)
 
 // url http globaly
-Vue.http.options.root = 'https://vue-js-project-course.firebaseio.com/data.json'
+Vue.http.options.root = 'https://vue-js-project-course.firebaseio.com/'
 
 // Intercepting requests
 Vue.http.interceptors.push((request, next) => {

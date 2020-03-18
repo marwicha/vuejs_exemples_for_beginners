@@ -49,18 +49,22 @@
                     username: '',
                     email: ''
                 },
-                users: []
+                users: [],
+
+                resource: {}
             }
         },
 
         methods: {
             submit() {
-                this.$http.post('', this.user)
-                .then(response => {
-                    console.log(response)
-                }, error => {
-                    console.log(error)
-                })
+                // this.$http.post('', this.user)
+                // .then(response => {
+                //     console.log(response)
+                // }, error => {
+                //     console.log(error)
+                // })
+
+                this.resource.saveAll(this.user)
             },
 
         fetchData() {
@@ -79,7 +83,18 @@
                 })
             }
         },
+
+       // life cycle hook in vue js
+        created() {
+            // creating multiple ressources and save in central place
+            const customAction =  {
+                saveAll : { method: 'POST', url: 'alternative.json' }
+
+            }
+            this.resource = this.$resource('data.json', {}, customAction)
+        },
     }
+    
 </script>
 
 <style>
