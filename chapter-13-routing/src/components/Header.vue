@@ -8,13 +8,9 @@
          
 
         
-            <router-link to= "/user/10" tag="li" active-class="active">
+            <router-link to= "/user" tag="li" active-class="active">
              <a>User</a>
-             </router-link> 
-
-            <router-link to= "/user/8" tag="li" active-class="active">
-             <a>User 2</a>
-             </router-link> 
+             </router-link>
        
 
     </ul>
