@@ -17,8 +17,16 @@ export const routes = [
 
     }, children: [
         { path: '', component: UserStart },
-        { path: ':id', component: UserDetail },
+        { path: ':id', component: UserDetail,
+         beforeEnter: (to, from, next) => {
+            next()
+        } },
         { path: ':id/edit', component: UserEdit, name: 'userEdit' }
-    ]}
+    ]},
+
+    { path: 'redirect-me', redirect: { name : 'home'} },
+
+    // everything not handled in routes 
+    { path : '*' , redirect: '/'}
 
 ]
