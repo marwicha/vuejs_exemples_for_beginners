@@ -1,61 +1,33 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import counter from './modules/counter'
+// * to create an object which can be accesed with actions
+import * as actions from './actions'
+
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
 
+//  these objects must have unique names for their methods, a solution
+//  creating a types file
+
     state: {
-        counter: 0
     },
 
     getters: {
-
-        doubleCounter: state => {
-            return state.counter * 2 
-        },
-
-        stringCounter: state => {
-            return state.counter + 'Clicks'
-        }
 
     },
 
     // must be synchrous, change the state immediatly 
     mutations: {
-        increment: (state, payload ) => {
-            state.counter += payload
-        },
-
-        decrement: (state, payload )  => {
-            state.counter -=payload
-        }
+       
     },
 
     // Async code
-    actions: {
-        // increment: context => {
-        //     context.commit('increment')
-        // },
+    actions,
 
-        increment: ({commit}, payload) => {
-            commit('increment', payload)
-        },
-
-        decrement: ({commit}, payload) => {
-            commit('decrement', payload)
-        },
-
-        asyncIncrement: ({commit}) => {
-           setTimeout( () => {
-               commit('increment')
-           }, 1000)
-        },
-
-        asyncDecrement: ({commit}) => {
-            setTimeout( () => {
-                commit('decrement')
-            }, 1000)
-         }
+    modules: {
+      counter
     }
 })
