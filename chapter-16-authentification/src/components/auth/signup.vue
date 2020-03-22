@@ -104,10 +104,7 @@
           terms: this.terms
         }
         
-       this.$store.dispatch('signUp', {
-         email :formData.email,
-         password: formData.password
-       })
+       this.$store.dispatch('signUp', formData)
 
 
       }
